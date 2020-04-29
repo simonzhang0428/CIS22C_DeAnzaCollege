@@ -1,0 +1,213 @@
+Lab 3 (100 pts)
+Due Friday, May 8 at 11:59pm on Canvas
+
+Pair Programming Required - Or You Will Receive a 0 on this Lab
+Both partners fill in, sign and date the pair programming contract and BOTH partners submit this file.
+Only one partner submits the lab code on Canvas.
+Please make sure both your names are on ALL the files.
+Both partners follow the rules for pair programming.
+
+Note: I Strongly Recommend You Complete Part 1 Below Before Midterm 1
+
+
+Part 1: Queue and Stack Basics (42 pts):
+Begin by implementing the Stack and Queue classes as defined in the lesson notes
+For the Queue class instructions, see Queue Lesson (Lesson 5)
+For the Stack class instructions, see Stack Lesson (Lesson 6)
+Note that you must implement all methods whose signatures are provided. No credit for writing any additional methods for these two classes or for altering the class definitions or method signatures, in any way, aside from implementing the required methods
+Make sure to test all of your methods to ensure that they are working properly in separate test files, named QueueTest.java and StackTest.java (where you should call each method at least two times inside of main as soon as you write it).
+Queue Class:
+enqueue
+dequeue
+getFront
+getLength
+isEmpty
+equals
+copy constructor
+Stack Class:
+push
+pop
+peek
+getLength
+isEmpty
+equals
+copy constructor
+Once you are satisfied that your methods are working properly (passing all tests you wrote in QueueTest.java and StackTest.java), move on to part 2 below.
+Note that for full credit, your copy constructors must be implemented in O(n) time.
+
+Part 2: Adding Recursion to Your Queue and Stack (40 pts)
+
+PrintReverse Methods (10 pts):
+For *both* the Queue and Stack classes, write the below recursive methods to display the Queue and Stack in reverse.
+   
+    /**Additional Operations*/
+
+    /**
+     * Prints in reverse order to the
+     * console, followed by a new line
+     * by calling the recursive helper
+     * method printReverse
+     */
+    public void printReverse() {
+       return;
+    }
+   
+    /**
+     * Recursively prints to the console
+     * the data in reverse order (no loops)
+     * @param node the current node
+     */
+
+   private void printReverse(Node node) {
+        return;
+    }    
+
+Why do we need the private helper method here?
+Since we are going to be traversing Node-by-Node, in a recursive fashion, we want to pass one Node at a time to the reversePrint method.
+However, since Nodes are private, we cannot access them outside of the Queue or Stack class.
+We would therefore not be able to call this method in QueueTest.java or StackTest.java, for example.
+Not convinced? Try it and see for yourself
+Also, here is a review of private and other access modifiers
+Therefore, we write the public prinReverse method whose main task is to call the private printReverse method.
+It is the private printReverse method that does most of the work.
+However, we can call the public printReverse method in QueueTest.java or StackTest.java and other classes without provoking an error.
+Important: Test each method carefully inside of your QueueTest.java or StackTest.java to make sure that it is working properly.
+
+
+SortedOrder Methods (10 pts):
+
+For both the Queue and Stack classes, write a recursive method to determine whether or not a Queue or Stack is in sorted order (smallest value to largest value).
+First, update your class signature as follows to extend Comparable.
+public class Queue<T extends Comparable<T>> {
+
+public class Stack<T extends Comparable<T>> {
+Because we want to call compareTo to compare data of type T in the below isSorted method, we need to make sure our class extends Comparable for the type of data we are storing. This signature guarantees that any type T stored in our Queue and Stack will implement Comparable and override compareTo
+For a review of Comparable and compareTo, see the information here
+Add the following method signatures to the Queue and Stack classes under the section for accessor methods.
+    /**Accessor Methods*/     
+
+    /**
+     * Determines whether data is sorted
+     * in ascending order by calling
+     * its recursive helper method isSorted()
+     * Note: when length == 0
+     * data is (trivially) sorted
+     * @return whether the data is sorted
+     */
+    public boolean isSorted() {
+        return false;
+    }
+
+
+/**
+* Helper method to isSorted
+* Recursively determines whether data is sorted
+* @param node the current node
+* @return whether the data is sorted
+*/
+private boolean isSorted(Node node) {
+    return false;
+}
+Test your method in QueueTest.java and StackTest.java.
+
+
+Search Methods (20 pts):
+
+Now, add two search methods to the Queue and Stack classes - linear and binary search
+The first of these methods is going to be a simple linear search method. 
+Note that the pseudocode for the two methods is given in the class notes. 
+If you are uncertain how to begin, the best approach would be to look at the notes from the Lesson 7 and 8.
+Hint: Recall that you should not use == with Object types, but must use .equals()
+You will need to add the following methods to your two classes:
+    /**Accessor Methods*/
+
+    /**
+     * Uses the iterative linear search
+     * algorithm to locate a specific
+     * element and return its position
+     * @param element the value to search for
+     * @return the location of value
+     * from 1 to length
+     * Note that in the case length==0
+     * the element is considered not found
+     */
+    public int linearSearch(T element) {
+        return -1;
+    }
+Next, add a method to perform recursive binary search on the Queue and Stack.
+Please note that you will receive no credit for your binarySearch method if it is not implemented recursively.
+Add the following method signature to the Queue and Stack classes:
+/**Accessor Methods*/
+
+/**
+     * Returns the location from 1 to length
+     * where value is located
+     * by calling the private helper method
+     * binarySearch
+     * @param value the value to search for
+     * @return the location where value is
+     * stored from 1 to length, or -1 to
+     * indicate not found
+     * @precondition isSorted()
+     * @throws IllegalStateException when the
+     * precondition is violated.
+     */
+    public int binarySearch(T value) throws IllegalStateException {
+        return -1;
+    }
+   
+    /**
+     * Searches for the specified value in
+     * by implementing the recursive
+     * binarySearch algorithm
+     * @param low the lowest bounds of the search
+     * @param high the highest bounds of the search
+     * @param value the value to search for
+     * @return the location at which value is located
+     * from 1 to length or -1 to indicate not found
+     */
+    private int binarySearch(int low, int high, T value) {
+        return -1;
+    }
+
+Important: For credit, you must implement the recursive version of binary search.
+To implement binarySearch, you can adapt the pseudocode provided below for binarySearch on an array.
+Test your method in QueueTest.java and StackTest.java.
+
+Recursive Binary Search Pseudocode
+
+Pre: A[] is sorted in increasing order
+method binarySearch(A[1 ... n], value, low, high)
+    if high < low
+        return not found
+    mid := low + (high-low)/2; //the midpoint formula
+    if a[mid] := value
+        return mid
+    else if value < A[mid] //search the left half
+        return binarySearch(A, value, low, mid-1)
+    else //search the right half
+        return binarySearch(A, value, mid+1, high)
+
+Linear Search Pseudocode:
+
+For each item in the container:
+     if that item has the desired value
+         stop the search and return the item's location.
+ return -1.
+
+Specifications for Submission:
+
+Submit your Queue.java, Stack.java, to Canvas, as well as QueueTest.java, and StackTest.java
+Submit your pair programming contract to Canvas (both partners).
+-5 pts for not submitting your contract or for a blank contract
+Please submit each file separately (no zip files or other compressed file type -5 pts).
+Please remove all package statements before submitting (-5 pts).
+Please format your code before submitting (-5 pts for improperly formatted code).
+Go to Source->format
+Please put both your names on top of all files in a proper Javadoc comment with @author tags (-5 pts)
+
+
+How You Will Be Graded:
+3 points per correct Queue and Stack method from Part 1
+40 points total for methods in Part 2
+18 points for your QueueTest.java and StackTest.java files that fully test your methods.

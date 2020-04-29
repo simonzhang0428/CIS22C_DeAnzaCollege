@@ -1,7 +1,8 @@
 /**
  * QueueTest.java
  * @author Simon Zhang
- * @author
+ * @author Daniil Durnev
+ * CIS 22C, Lab 3
  */
 
 import java.util.*;
@@ -37,7 +38,5 @@ public class QueueTest {
             System.out.println(e.getMessage());
         }
         System.out.println("Equal (false): " + Q.equals(Q2));
-
     }
-
 }

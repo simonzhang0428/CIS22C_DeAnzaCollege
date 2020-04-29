@@ -1,7 +1,8 @@
 /**
  * Queue.java
  * @author Simon Zhang
- * @author
+ * @author Daniil Durnev
+ * CIS 22C, Lab 3
  */
 
 import java.util.NoSuchElementException;
@@ -24,7 +25,7 @@ public class Queue<T> {
     /********** constructors ***********/
 
     /**
-     *  Default constructor for the Queue class
+     * Default constructor for the Queue class
      * @postcondition a new Queue object with all fields
      * assigned default values
      */
@@ -102,14 +103,15 @@ public class Queue<T> {
         } else if (!(o instanceof Queue)) {
             return false;
         } else {
-            Queue<T> q = (Queue<T>) o;
+            @SuppressWarnings("unchecked")
+			Queue<T> q = (Queue<T>) o;
             if (this.length != q.getLength()) {
                 return false;
             } else {
                 Node temp1 = this.front;
                 Node temp2 = q.front;
                 while (temp1 != null) {
-                    if (temp1.data != temp2.data) {
+                    if (!(temp1.data.equals(temp2.data)) {
                         return false;
                     }
                     temp1 = temp1.next;
@@ -138,7 +140,6 @@ public class Queue<T> {
             end = p;
         }
         length++;
-
     }
 
     /**

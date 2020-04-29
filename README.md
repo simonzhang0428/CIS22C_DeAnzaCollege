@@ -1,1 +1,1 @@
-# CIS22C_DeAnzaCollege
+# CIS22C_De Anza College

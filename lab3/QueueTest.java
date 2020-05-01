@@ -38,5 +38,8 @@ public class QueueTest {
             System.out.println(e.getMessage());
         }
         System.out.println("Equal (false): " + Q.equals(Q2));
+
+        System.out.println(Q);
+        Q.printReverse();
     }
 }

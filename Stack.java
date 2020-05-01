@@ -185,7 +185,8 @@ public class Stack<T> {
      * method printReverse
      */
     public void printReverse() {
-        return;
+        printReverse(top);
+        System.out.print("\n");
     }
 
     /**
@@ -193,8 +194,11 @@ public class Stack<T> {
      * the data in reverse order (no loops)
      * @param node the current node
      */
-
     private void printReverse(Node node) {
-        return;
+        if(node == null) {
+          return;
+        }
+        printReverse(node.next);
+        System.out.print(node.data + " ");
     }
 }

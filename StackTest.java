@@ -38,6 +38,8 @@ public class StackTest {
         System.out.println("empty (true): " + S2.isEmpty());
         System.out.println("equals (false): " + S.equals(S2));
 
+        System.out.println(S);
+        S.printReverse();
     }
 
 

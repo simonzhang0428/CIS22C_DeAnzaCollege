@@ -1,7 +1,8 @@
 /**
  * StackTest.java
  * @author Simon Zhang
- * @author
+ * @author Daniil Durnev
+ * CIS 22C, Lab 3
  */
 
 import java.util.NoSuchElementException;

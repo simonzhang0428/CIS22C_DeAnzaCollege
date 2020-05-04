@@ -7,7 +7,7 @@
 
 import java.util.NoSuchElementException;
 
-public class Stack<T> {
+public class Stack<T extends Comparable<T>> {
     private class Node {
         private T data;
         private Node next;
@@ -52,13 +52,64 @@ public class Stack<T> {
             while (temp1.next != null) {
                 temp1 = temp1.next;
                 temp2.next = new Node(temp1.data);
-                this.length = original.getLength();
+                temp2 = temp2.next;
             }
+            this.length = original.getLength();
         }
 
     }
 
     /****ACCESSORS****/
+
+    /**
+     * Determines whether data is sorted
+     * in ascending order by calling
+     * its recursive helper method isSorted()
+     * Note: when length == 0
+     * data is (trivially) sorted
+     * @return whether the data is sorted
+     */
+    public boolean isSorted() {
+        return isSorted(top);
+    }
+
+
+    /**
+    * Helper method to isSorted
+    * Recursively determines whether data is sorted
+    * @param node the current node
+    * @return whether the data is sorted
+    */
+    private boolean isSorted(Node node) {
+        if(node == null || node.next == null) {
+          return true;
+        }
+        if(node.data.compareTo(node.next.data) == 1) {
+          return false;
+        }
+        return isSorted(node.next);
+    }
+
+      /**
+      * Uses the iterative linear search
+      * algorithm to locate a specific
+      * element and return its position
+      * @param element the value to search for
+      * @return the location of value
+      * from 1 to length
+      * Note that in the case length==0
+      * the element is considered not found
+      */
+     public int linearSearch(T element) {
+       Node temp = top;
+       for(int i = 0; i < length; i++) {
+         if(temp.data.equals(element)) {
+           return (i+1);
+         }
+         temp = temp.next;
+       }
+       return -1;
+     }
 
     /**
      * Returns the value stored at the top

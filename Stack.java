@@ -111,6 +111,37 @@ public class Stack<T extends Comparable<T>> {
        return -1;
      }
 
+     /**
+     * Returns the location from 1 to length
+     * where value is located
+     * by calling the private helper method
+     * binarySearch
+     * @param value the value to search for
+     * @return the location where value is
+     * stored from 1 to length, or -1 to
+     * indicate not found
+     * @precondition isSorted()
+     * @throws IllegalStateException when the
+     * precondition is violated.
+     */
+    public int binarySearch(T value) throws IllegalStateException {
+        return -1;
+    }
+
+    /**
+     * Searches for the specified value in
+     * by implementing the recursive
+     * binarySearch algorithm
+     * @param low the lowest bounds of the search
+     * @param high the highest bounds of the search
+     * @param value the value to search for
+     * @return the location at which value is located
+     * from 1 to length or -1 to indicate not found
+     */
+    private int binarySearch(int low, int high, T value) {
+        return -1;
+    }
+
     /**
      * Returns the value stored at the top
      * of the Stack

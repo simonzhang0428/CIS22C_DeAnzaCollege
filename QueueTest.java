@@ -41,5 +41,24 @@ public class QueueTest {
 
         System.out.println(Q);
         Q.printReverse();
+
+        System.out.println("\n\n***Testing isSorted***");
+        Queue<Integer> queue = new Queue<>();
+        for(int i = 10; i >= 0; i--) queue.enqueue(i);
+        System.out.println("Queue1: " + queue);
+        System.out.println("Is Queue1 sorted? (false): " + queue.isSorted());
+
+        Queue<Integer> queue2 = new Queue<>();
+        for(int i = 0; i <= 10; i++) queue2.enqueue(i);
+        System.out.println("Queue2: " + queue2);
+        System.out.println("Is Queue2 sorted? (true): " + queue2.isSorted());
+
+
+        System.out.println("\n\n***Testing linearSearch***");
+        System.out.println("Searching for 20, which is not in the queue: " + queue);
+        System.out.println("Should print -1: " + queue.linearSearch(20));
+
+        System.out.println("Searching for 7 in the queue: " + queue);
+        System.out.println("Should print 4: " + queue.linearSearch(7));
     }
 }

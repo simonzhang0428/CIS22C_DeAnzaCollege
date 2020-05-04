@@ -7,7 +7,7 @@
 
 import java.util.NoSuchElementException;
 
-public class Queue<T> {
+public class Queue<T extends Comparable<T>> {
     private class Node {
         private T data;
         private Node next;
@@ -58,6 +58,99 @@ public class Queue<T> {
 
 
     /****ACCESSORS****/
+
+    /**
+     * Determines whether data is sorted
+     * in ascending order by calling
+     * its recursive helper method isSorted()
+     * Note: when length == 0
+     * data is (trivially) sorted
+     * @return whether the data is sorted
+     */
+    public boolean isSorted() {
+        return isSorted(front);
+    }
+
+
+    /**
+    * Helper method to isSorted
+    * Recursively determines whether data is sorted
+    * @param node the current node
+    * @return whether the data is sorted
+    */
+    private boolean isSorted(Node node) {
+        if (node == null || node.next == null) {
+          return true;
+        }
+        if (node.data.compareTo(node.next.data) == 1) {
+          return false;
+        }
+        return isSorted(node.next);
+    }
+
+
+    /**
+     * Uses the iterative linear search
+     * algorithm to locate a specific
+     * element and return its position
+     * @param element the value to search for
+     * @return the location of value
+     * from 1 to length
+     * Note that in the case length==0
+     * the element is considered not found
+     */
+    public int linearSearch(T element) {
+        Node temp = front;
+        for (int i = 0; i < this.length; i++) {
+            if (temp.data.equals(element)) {
+              return (i+1);
+            }
+            temp = temp.next;
+        }
+        return -1;
+    }
+
+/**
+     * Returns the location from 1 to length
+     * where value is located
+     * by calling the private helper method
+     * binarySearch
+     * @param value the value to search for
+     * @return the location where value is
+     * stored from 1 to length, or -1 to
+     * indicate not found
+     * @precondition isSorted()
+     * @throws IllegalStateException when the
+     * precondition is violated.
+     */
+    public int binarySearch(T value) throws IllegalStateException {
+        if(!isSorted()) {
+          throw new IllegalStateException("binarySearch: queue is not sorted, cannot do binary search");
+        }
+    }
+
+    /**
+     * Searches for the specified value in
+     * by implementing the recursive
+     * binarySearch algorithm
+     * @param low the lowest bounds of the search
+     * @param high the highest bounds of the search
+     * @param value the value to search for
+     * @return the location at which value is located
+     * from 1 to length or -1 to indicate not found
+     */
+    private int binarySearch(int low, int high, T value) {
+        if (high < low) {
+            return -1;
+        }
+        int mid = low + (high-low) / 2;
+        if(mid == value) {
+          return
+        }
+
+    }
+
+
 
     /**
      * Returns the value stored at the front

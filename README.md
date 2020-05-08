@@ -1,1 +1,1 @@
-# CIS22C_De Anza College
+# CIS22C_lab3_Stack/Queue

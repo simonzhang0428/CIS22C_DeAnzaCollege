@@ -125,7 +125,10 @@ public class Stack<T extends Comparable<T>> {
      * precondition is violated.
      */
     public int binarySearch(T value) throws IllegalStateException {
-        return -1;
+        if(!isSorted()) {
+          throw new IllegalStateException("binarySearch: stack is not sorted");
+        }
+        return binarySearch(0, length - 1, value);
     }
 
     /**
@@ -139,7 +142,24 @@ public class Stack<T extends Comparable<T>> {
      * from 1 to length or -1 to indicate not found
      */
     private int binarySearch(int low, int high, T value) {
-        return -1;
+        if (high < low) {
+          return -1;
+        }
+
+        Node temp = top;
+        int mid = (low + high) / 2;
+
+        for(int i = 0; i < mid; i++) {
+          temp = temp.next;
+        }
+
+        if(temp.data.compareTo(value) == 0) {
+          return mid + 1;
+        } else if (temp.data.compareTo(value) == 1) {
+          return binarySearch(low, mid - 1, value);
+        } else {
+          return binarySearch(mid + 1, high, value);
+        }
     }
 
     /**
@@ -214,13 +234,9 @@ public class Stack<T extends Comparable<T>> {
      * of the Stack
      */
     public void push(T data) {
-        if (isEmpty()) {
-            top = new Node(data);
-        } else {
-            Node p = new Node(data);
-            p.next = top;
-            top = p;
-        }
+        Node p = new Node(data);
+        p.next = top;
+        top = p;
         length++;
     }
 

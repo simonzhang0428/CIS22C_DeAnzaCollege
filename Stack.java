@@ -111,6 +111,57 @@ public class Stack<T extends Comparable<T>> {
        return -1;
      }
 
+     /**
+     * Returns the location from 1 to length
+     * where value is located
+     * by calling the private helper method
+     * binarySearch
+     * @param value the value to search for
+     * @return the location where value is
+     * stored from 1 to length, or -1 to
+     * indicate not found
+     * @precondition isSorted()
+     * @throws IllegalStateException when the
+     * precondition is violated.
+     */
+    public int binarySearch(T value) throws IllegalStateException {
+        if(!isSorted()) {
+          throw new IllegalStateException("binarySearch: stack is not sorted");
+        }
+        return binarySearch(0, length - 1, value);
+    }
+
+    /**
+     * Searches for the specified value in
+     * by implementing the recursive
+     * binarySearch algorithm
+     * @param low the lowest bounds of the search
+     * @param high the highest bounds of the search
+     * @param value the value to search for
+     * @return the location at which value is located
+     * from 1 to length or -1 to indicate not found
+     */
+    private int binarySearch(int low, int high, T value) {
+        if (high < low) {
+          return -1;
+        }
+
+        Node temp = top;
+        int mid = (low + high) / 2;
+
+        for(int i = 0; i < mid; i++) {
+          temp = temp.next;
+        }
+
+        if(temp.data.compareTo(value) == 0) {
+          return mid + 1;
+        } else if (temp.data.compareTo(value) == 1) {
+          return binarySearch(low, mid - 1, value);
+        } else {
+          return binarySearch(mid + 1, high, value);
+        }
+    }
+
     /**
      * Returns the value stored at the top
      * of the Stack
@@ -183,13 +234,9 @@ public class Stack<T extends Comparable<T>> {
      * of the Stack
      */
     public void push(T data) {
-        if (isEmpty()) {
-            top = new Node(data);
-        } else {
-            Node p = new Node(data);
-            p.next = top;
-            top = p;
-        }
+        Node p = new Node(data);
+        p.next = top;
+        top = p;
         length++;
     }
 

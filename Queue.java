@@ -127,6 +127,7 @@ public class Queue<T extends Comparable<T>> {
         if(!isSorted()) {
           throw new IllegalStateException("binarySearch: queue is not sorted, cannot do binary search");
         }
+        return binarySearch(0, length - 1, value);
     }
 
     /**
@@ -141,15 +142,24 @@ public class Queue<T extends Comparable<T>> {
      */
     private int binarySearch(int low, int high, T value) {
         if (high < low) {
-            return -1;
-        }
-        int mid = low + (high-low) / 2;
-        if(mid == value) {
-          return
+          return -1;
         }
 
+        Node temp = front;
+        int mid = (low + high) / 2;
+
+        for(int i = 0; i < mid; i++) {
+          temp = temp.next;
+        }
+
+        if(temp.data.compareTo(value) == 0) {
+          return mid + 1;
+        } else if (temp.data.compareTo(value) == 1) {
+          return binarySearch(low, mid - 1, value);
+        } else {
+          return binarySearch(mid + 1, high, value);
+        }
     }
-
 
 
     /**

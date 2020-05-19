@@ -1,10 +1,3 @@
-
-/**
- * BSTTest.java
- * @author Daniil Durnev
- * CIS 22C, Lab 4
- */
-
 import java.util.NoSuchElementException;
 
 public class BSTTest {

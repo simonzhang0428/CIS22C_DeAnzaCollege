@@ -67,7 +67,7 @@ public class BST<T extends Comparable<T>> {
      * preconditon is violated
      */
     public T getRoot() throws NoSuchElementException{
-        if (isEmpty) {
+        if (isEmpty()) {
             throw new NoSuchElementException("getRoot, Empty Tree, cannot get root!");
         }
         return root.data;
@@ -162,7 +162,7 @@ public class BST<T extends Comparable<T>> {
         if(isEmpty()) {
           throw new NoSuchElementException("findMax, tree is empty, no maximum element");
         }
-        findMax(root);
+        return findMax(root);
     }
 
     /**
@@ -229,9 +229,10 @@ public class BST<T extends Comparable<T>> {
     @Override public boolean equals(Object o) {
         if(this == o) {
           return true;
-        } else if(!o instanceof BST<T>){
+        } else if(!(o instanceof BST)){
           return false;
         } else {
+          @SuppressWarnings("unchecked")
           BST<T> tree = (BST<T>) o;
           Node root1 = this.root;
           Node root2 = tree.root;
@@ -280,9 +281,8 @@ public class BST<T extends Comparable<T>> {
      */
     private void insert(T data, Node node) {
         if(node == null) {
-            return;
-        }
-        if(data.compareTo(node.data) <= 0) {
+          root = new Node(data);
+        } else if(data.compareTo(node.data) <= 0) {
             if(node.left == null) {
               node.left = new Node(data);
             } else {
@@ -373,6 +373,7 @@ public class BST<T extends Comparable<T>> {
      */
     public void preOrderPrint() {
         preOrderPrint(root);
+        System.out.println();
     }
 
     /**
@@ -395,6 +396,7 @@ public class BST<T extends Comparable<T>> {
      */
     public void inOrderPrint() {
         inOrderPrint(root);
+        System.out.println();
     }
 
     /**
@@ -418,6 +420,7 @@ public class BST<T extends Comparable<T>> {
      */
     public void postOrderPrint() {
         postOrderPrint(root);
+        System.out.println();
     }
 
     /**

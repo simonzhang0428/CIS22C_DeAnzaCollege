@@ -184,6 +184,15 @@ public class BST<T extends Comparable<T>> {
         return false;
     }
 
+
+// 1. if the two nodes are stored at the same memory address, return true
+// 2. if either one is null, return false
+// 3. if the data in the two nodes is not equal return false
+// 4. if their two left nodes (the left branches of the tree) are not equal (recursive call), return false
+// 5. if their two right nodes (the right branches of the tree) are not equal (recursive call), return false
+// 6. otherwise, return true
+
+
     /**
      * Helper method for the equals method
      * @param node1 the node of the first bst
@@ -203,8 +212,38 @@ public class BST<T extends Comparable<T>> {
      * @param data the data to insert
      */
     public void insert(T data) {
+        if (root == null) {
+            root = new Node(data);
+        } else {
+            insert(data, root)
+        }
 
     }
+
+
+// Pseudocode for insert(node, value)
+//
+// 1. Check if the value to insert is smaller than or equal to the data stored at node.
+//
+// 1a. If this is true
+//
+// 1aa. Check if node's left is null
+//
+// 1aaa. If this is true, insert the value at node's left
+//
+// 1b. If the node's left is not NULL
+//
+// 1bb.recursively call the insert method passing it node's left and value
+//
+// 2. Otherwise
+//
+// 2a. Check if the node's right is null
+//
+// 2aa. If this is true, insert the value at node's right
+//
+// 2b. If the node's right is not null
+//
+// 2bb. recursively call the insert method passing it node's right and value
 
     /**
      * Helper method to insert

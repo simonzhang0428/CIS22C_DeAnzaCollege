@@ -52,6 +52,7 @@ public class BST<T extends Comparable<T>> {
         if(node == null) {
           return;
         }
+
         insert(node.data);
         copyHelper(node.left);
         copyHelper(node.right);
@@ -212,13 +213,6 @@ public class BST<T extends Comparable<T>> {
         }
     }
 
-// 1. if the two nodes are stored at the same memory address, return true
-// 2. if either one is null, return false
-// 3. if the data in the two nodes is not equal return false
-// 4. if their two left nodes (the left branches of the tree) are not equal (recursive call), return false
-// 5. if their two right nodes (the right branches of the tree) are not equal (recursive call), return false
-// 6. otherwise, return true
-
     /**
      * Determines whether two trees store
      * identical data in the same structural
@@ -312,26 +306,6 @@ public class BST<T extends Comparable<T>> {
 
         remove(data, root);
     }
-
-// Pseudocode for remove helper(node, value)
-// 1. If node is null
-// 1. return node
-// 2. Otherwise, if value < the node's data
-// 1.set node's leftchild equal to the recursive call of remove helper on node's leftchild
-// 3. Otherwise, if value > the node's data
-// 1. set node's rightchild equal to the recursive call of remove helper on node's rightchild
-// 4. Otherwise,
-// 1. If node is a leaf node
-// 1. Set node to null
-// 2. Otherwise if node has a leftchild but no rightchild
-// 1. set the leftchild to be the node
-// 3. Otherwise if node has a rightchild but no leftchild
-// 1. set the rightchild to be the node
-// 4. Otherwise
-// 1. Search for the minimum value in the right subtree of the node
-// 2. Set the node's data to be the minimum value in the node's right subtree
-// 3. Set node's rightchild equal to the recursive call of remove helper, passing it node's rightchild and the minimum data of node's right subtree (i.e. delete the duplicate value in the right subtree)
-// 5. return the node
 
     /**
      * Helper method to the remove method

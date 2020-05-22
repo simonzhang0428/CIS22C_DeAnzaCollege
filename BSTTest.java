@@ -1,10 +1,5 @@
 import java.util.NoSuchElementException;
 
-/**
- * BSTTest.java
- * @author parrishj
- * CIS 22C, Lab 4
- */
 public class BSTTest {
     public static void main(String[] args) {
         BST<Integer> intBst = new BST<Integer>();
@@ -147,5 +142,4 @@ public class BSTTest {
         }
 
     }
-
 }
